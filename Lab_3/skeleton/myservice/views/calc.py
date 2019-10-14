@@ -10,8 +10,6 @@ endpoint: http://127.0.0.1:5000/calc/sum?m=_&n=_
 '''
 @calc.route('/calc/sum', methods=['GET'])
 def sum():
-    print(request.args.get('n'))
-    print(type(request.args.get('n')))
     m = int(request.args.get('m'))
     n = int(request.args.get('n'))
 
@@ -42,7 +40,6 @@ def prod():
     n_sign = np.sign(n)
     for x in range(abs(n)):
         sum_value += abs(m)
-        print(sum_value)
     result = sum_value * m_sign * n_sign
 
     return jsonify({'result':str(result)})
