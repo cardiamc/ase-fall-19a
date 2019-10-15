@@ -1,4 +1,5 @@
 from flakon import JsonBlueprint
+import json
 from flask import request, jsonify, abort
 from myservice.classes.quiz import Quiz, Question, Answer, NonExistingAnswerError, LostQuizError, CompletedQuizError
 
@@ -8,14 +9,20 @@ _LOADED_QUIZZES = {}  # list of available quizzes
 _QUIZNUMBER = 0  # index of the last created quizzes
 
 
-# TODO: complete the decoration
-@quizzes.route("/quizzes")
+'''
+    Quizzes endpoint. 
+    It allows either to creare a new quiz or retrieve all loaded quizzes
+'''
+@quizzes.route("/quizzes", methods=['GET','POST'])
 def all_quizzes():
     if 'POST' == request.method:
-        # TODO: Create new quiz 
+        # Create new quiz
+        content = json.loads(str(request.data, 'utf8'))
+        result = create_quiz(jsonify(content))
     elif 'GET' == request.method:
-        # TODO: Retrieve all loaded quizzes
-
+        # Retrieve all loaded quizzes
+        print(request)
+        result = get_all_quizzes(request)
     return result
 
 # TODO: complete the decoration
@@ -32,11 +39,11 @@ def single_quiz(id):
 
     # TODO: check if the quiz is an existing one
 
-    if 'GET' == request.method:  
+    #if 'GET' == request.method:  
         # TODO: retrieve a quiz <id>
        
 
-    elif 'DELETE' == request.method:
+    #elif 'DELETE' == request.method:
         # TODO: delete a quiz and get back number of answered questions
         # and total number of questions
 
@@ -51,7 +58,7 @@ def play_quiz(id):
 
     # TODO: check if the quiz is an existing one
 
-    if 'GET' == request.method:  
+    #if 'GET' == request.method:  
         # TODO: retrieve next question in a quiz, handle exceptions
 
     return result
