@@ -10,14 +10,14 @@ def sum(m,n):
     return tot_sum
 
 def divide(m,n):
-    result = 0
+    resultt = 0
     negativeResult = m > 0 and n < 0 or m < 0 and n > 0
     n = abs(n)
     m = abs(m)
 
     while (m-n >= 0):
         m -= n
-        result += 1
+        resultt += 1
 
-        result = -result if negativeResult else result
-    return result
+        resultt = -resultt if negativeResult else resultt
+    return resultt
